@@ -21,7 +21,7 @@ git checkout -b $releaseBranch $masterBranch
 # create the release branch from the -develop branch
 git push --set-upstream origin $releaseBranch 
 
-echo -e "Do you have a previous release branch to merge into the new one? \c "
+echo -e "Do you have a previous release branch to merge into the new one? (y|n): \c "
 read confirm
 
 if([ $confirm == "y" ]) then
@@ -30,7 +30,7 @@ if([ $confirm == "y" ]) then
     echo -e "Enter the previous release branch number e.g. (release.0.0.50) \c "
     read previousReleaseBranch
 
-    if[ -z "$previousReleaseBranch"]
+    if([ -z "$previousReleaseBranch" ]) then
         echo "Created new local and remote release branch i.e. $releaseBranch \c"
         exit 1;
     else
