@@ -21,23 +21,23 @@ git checkout -b $releaseBranch $masterBranch
 # create the release branch from the -develop branch
 git push --set-upstream origin $releaseBranch 
 
-# enter previous release branch number
-echo -e "Enter the previous release branch number e.g. (release.0.0.50) \c "
-read previousReleaseBranch
-
-# checkout previous release branch
-git checkout $previousReleaseBranch
-
-# git pull origin previous releae branch
-git pull origin $previousReleaseBranch
-
-# checkout new release branch
-git checkout $releaseBranch 
-
 echo -e "Are you sure you want to merge the previous release branch $previousReleaseBranch into new $releaseBranch? (y|n): \c "
 read confirm
 
 if([ $confirm == "y" ]) then
+
+    # enter previous release branch number
+    echo -e "Enter the previous release branch number e.g. (release.0.0.50) \c "
+    read previousReleaseBranch
+
+    # checkout previous release branch
+    git checkout $previousReleaseBranch
+
+    # git pull origin previous releae branch
+    git pull origin $previousReleaseBranch
+
+    # checkout new release branch
+    git checkout $releaseBranch 
 
 	echo "Merging $previousReleaseBranch into $releaseBranch "
 
@@ -52,10 +52,5 @@ if([ $confirm == "y" ]) then
         exit 1;
     fi
 else
-	echo "Aborted the merging of old release branch into new release branch."
-	echo "Deleting the new release branch $releaseBranch"
-	git checkout $masterBranch
-	git branch -d $releaseBranch
-    git push origin --delete $releaseBranch
-    exit 2;
+	exit 1;
 fi	
