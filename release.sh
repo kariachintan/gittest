@@ -56,5 +56,6 @@ else
 	echo "Deleting the new release branch $releaseBranch"
 	git checkout $masterBranch
 	git branch -d $releaseBranch
+    git push origin --delete $releaseBranch
     exit 2;
 fi	
