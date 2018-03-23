@@ -1,4 +1,7 @@
- echo -e "Enter the previous release branch number e.g. (release.0.0.50) \c "
+#cat ~/.vimrc
+#syntax on 
+
+echo -e "Enter the previous release branch number e.g. (release.0.0.50) \c "
  read previousReleaseBranch
 
 if ([ -z "$previousReleaseBranch" ]) then
